@@ -908,10 +908,10 @@ class Wave:
 
         if full:
             hs = np.fft.fft(self.ys)
-            fs = np.fft.fft(n, d)
+            fs = np.fft.fftfreq(n, d)
         else:
             hs = np.fft.rfft(self.ys)
-            fs = scipy.fftpack.rfftfreq(n, d)
+            fs = np.fft.rfftfreq(n, d)
 
         return Spectrum(hs, fs, self.framerate, full)
 
