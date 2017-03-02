@@ -99,12 +99,16 @@ class Node():
     def get_windspeed(self):
         '''
         A function that returns a week of windspeed data as a vector
-        ''' 
-        # Model windspeed as Pink Noise with beta = 2
-        windspeed_sig = td.PinkNoise(amp=6,beta=2)
-        windspeed_wav = windspeed_sig.make_wave(duration=7,framerate=144)
-        windspeed_wav.ys += 6
-        return windspeed_wav.ys
+        '''
+	wind_sig = td.SinSignal(freq=1,amp=6,offset=(math.pi))
+        # add noise
+        wind_sig += td.UncorrelatedUniformNoise()
+        # evaluate function for a week(duration=7) ever 10 min (framerate=144)
+        wind_wave = wind_sig.make_wave(duration=8,framerate=144)
+        # set ave temp of a node to be between 60 and 75 degrees
+        wind_wave.ys += random.randint(1,10)
+ 
+        return wind_wave.ys
         
     def get_wind_direction(self):
         # randomly change wind direction 
@@ -151,3 +155,4 @@ class Node():
         
         self.n += 1
         return sensor_data_dict
+
