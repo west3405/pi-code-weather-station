@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Weather Engineering Team
 Created on Tue Feb 28 10:46:24 2017
@@ -64,17 +65,21 @@ while True:
 # write to it, a try except block prevents that
 
         try:
-            fmt = '%Y-%m-%d_%H-%M'
-            timestamp = time.strftime(fmt,time.localtime())
-            f_name = timestamp + '.json'
-            with open(f_name,'w') as f_obj:
-                json.dump(data_dict,f_obj)
+# 		use below code to timestamp file
+#            fmt = '%Y-%m-%d_%H-%M'
+#           timestamp = time.strftime(fmt,time.localtime())
+#            f_name = timestamp + '.json'
+            f_name = 'test_data.json'
+                with open(f_name,'w') as f_obj:
+           	json.dump(data_dict,f_obj)
         except:
-            print('oops')
+            print('oops file not saved')
             pass
 # Sleep for 30 sec
     time.sleep(30)
     
     
     
+    
+
     
